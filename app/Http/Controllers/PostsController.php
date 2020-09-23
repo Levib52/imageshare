@@ -26,34 +26,7 @@ class PostsController extends Controller
 
     public function upload()
     {
-        $categories = [
-            'arts & crafts',
-            'antiques & collectables',
-            'auto parts',
-            'bicycles',
-            'exercise & fitness',
-            'musical instruments',
-            'sports & outdoors',
-            'appliances',
-            'furniture',
-            'garden',
-            'tools',
-            'computers & electronics',
-            'mobile phones',
-            'vehicles',
-            'bags & luggage',
-            'jewelry & accessories',
-            "men's clothing & shoes",
-            "women's clothing & shoes",
-            'baby & kids',
-            'health & beauty',
-            'pet supplies',
-            'toys & games',
-            'books, movies & music',
-            'video games',
-            'miscellaneous'];
-
-        return view('upload', compact('categories'));
+        return view('upload');
     }
 
     /*##
@@ -106,7 +79,7 @@ class PostsController extends Controller
             'thumbnail' => json_encode($thumbnailArray),
         ]));
 
-        return redirect('/profile/'. auth()->user()->id)->with('success', 'Post Created');
+        return redirect('/user/'. auth()->user()->id)->with('success', 'Post Created');
     }
 
     /*##
@@ -114,7 +87,7 @@ class PostsController extends Controller
     ##*/
     public function show(Post $post)
     {
-        return view('post.show', compact('post'));
+        return view('image.show', compact('post'));
     }
 
     /*##
@@ -207,7 +180,7 @@ class PostsController extends Controller
                 'thumbnail' => json_encode($thumbnailArray),
             ]));
         }
-        return redirect('post/' .  $post->id)->with('status', 'Post Updated');
+        return redirect('image/' .  $post->id)->with('status', 'Post Updated');
     }
 
     /*##

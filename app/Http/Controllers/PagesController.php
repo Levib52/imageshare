@@ -11,6 +11,8 @@ class PagesController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('index');
+        $recentPosts = Post::whereIn('user_id', $users)->orderBy('created_at', 'DESC')->paginate(32);
+
+        return view('index', compact('recentPosts'));
     }
 }
