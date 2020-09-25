@@ -8,9 +8,22 @@
     </div>
     <div class="row">
         @foreach($recentPosts as $post)
+        <?php $thumbnails = json_decode($post->thumbnail);?>
             <a href="/image/{{$post->id}}" class="col-lg-3 col-md-6 py-3">
-                <?php $thumbnails = json_decode($post->thumbnail); ?>
-                <img class="img-fluid" src="/storage/photos/{{ $thumbnails[0] }}" alt="">
+                <?php $num = count($thumbnails);?>
+                @if($num === 1)
+                    <img class="img-fluid" src="/storage/photos/{{$thumbnails[0]}}" alt="">
+                @else
+                    <div id="thumbnailCarousel" class="carousel slide px-0" data-ride="carousel">
+                        <div class="carousel-inner px-0">
+                            @foreach($thumbnails as $key => $thumbnail)
+                            <div class="carousel-item {{$key == 0 ? 'active' : '' }}">
+                                <img class="img-fluid" src="/storage/photos/{{ $thumbnail }}" alt="">
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
             </a>
         @endforeach
     </div>

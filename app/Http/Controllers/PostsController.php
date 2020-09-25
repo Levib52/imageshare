@@ -17,7 +17,8 @@ class PostsController extends Controller
     ##*/    
     public function __construct()
     {
-        $this->middleware('auth');
+        //the except show allows the users who are not logged in to view posts
+        $this->middleware('auth', ['except' => 'show']);
     }
 
     /*##
@@ -39,7 +40,6 @@ class PostsController extends Controller
        $data = request()->validate([
             'postTitle' => 'required',
             'postDescription' => 'required',
-            'postCategory' => 'required',
             'postTags' => 'required',
             'postImage.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg,',
             'thumbnail.*' => '',
@@ -73,7 +73,6 @@ class PostsController extends Controller
         auth()->user()->post()->create(array_merge([
             'postTitle' => ucfirst($data['postTitle']),
             'postDescription' => $data['postDescription'],
-            'postCategory' => $data['postCategory'],
             'postTags' => strtolower($data['postTags']),
             'postImage' => json_encode($originalImageArray),
             'thumbnail' => json_encode($thumbnailArray),
@@ -98,34 +97,7 @@ class PostsController extends Controller
         //authorize ensures that users can only view the "edit" view for posts they created
         $this->authorize('update', $post);
 
-        $categories = [
-            'arts & crafts',
-            'antiques & collectables',
-            'auto parts',
-            'bicycles',
-            'exercise & fitness',
-            'musical instruments',
-            'sports & outdoors',
-            'appliances',
-            'furniture',
-            'garden',
-            'tools',
-            'computers & electronics',
-            'mobile phones',
-            'vehicles',
-            'bags & luggage',
-            'jewelry & accessories',
-            "men's clothing & shoes",
-            "women's clothing & shoes",
-            'baby & kids',
-            'health & beauty',
-            'pet supplies',
-            'toys & games',
-            'books, movies & music',
-            'video games',
-            'miscellaneous'];
-
-        return view('post.edit', compact('post', 'categories'));
+        return view('image.edit', compact('post'));
     }
 
     public function update(Post $post, Request $request)
@@ -137,10 +109,6 @@ class PostsController extends Controller
         $data = request()->validate([
             'postTitle' => 'required',
             'postDescription' => 'required',
-            'postTradeValue' => 'required|integer',
-            'postTradeOption' => 'required',
-            'postCategory' => 'required',
-            'postTradeInterest' => 'required',
             'postTags' => 'required',
             'postImage.*' => 'image|mimes:jpeg,png,jpg,gif,svg',
             'thumbnail.*' => '',
@@ -167,14 +135,12 @@ class PostsController extends Controller
             $post->update(array_merge([
                 'postTitle' => ucfirst($data['postTitle']),
                 'postDescription' => $data['postDescription'],
-                'postCategory' => $data['postCategory'],
                 'postTags' => strtolower($data['postTags']),
             ]));
         } else {
             $post->update(array_merge([
                 'postTitle' => ucfirst($data['postTitle']),
                 'postDescription' => $data['postDescription'],
-                'postCategory' => $data['postCategory'],
                 'postTags' => strtolower($data['postTags']),
                 'postImage' => json_encode($originalImageArray),
                 'thumbnail' => json_encode($thumbnailArray),
@@ -191,6 +157,6 @@ class PostsController extends Controller
         //authorize ensures users can only delete their own posts
         $this->authorize('update', $post);
         $post->delete();
-        return redirect('/profile/'. auth()->user()->id)->with('status', 'Post Deleted');
+        return redirect('/user/'. auth()->user()->id)->with('status', 'Post Deleted');
     }
 }

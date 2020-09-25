@@ -8,7 +8,7 @@
             @method('PATCH')
             <div class="form-group">
                 <label for="location">Bio</label>
-                <input type="text" class="form-control @error('location') is-invalid @enderror" id="bio" name="bio" value="{{old('bio')}}">
+                <input type="text" class="form-control @error('location') is-invalid @enderror" id="bio" name="bio" value="{{old('bio', $user->profile->bio)}}">
                 @error('location')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -17,7 +17,7 @@
             </div>
             <div class="form-group">
                 <label for="location">Location</label>
-                <input type="text" class="form-control @error('location') is-invalid @enderror" id="location" name="location" value="{{old('location')}}">
+                <input type="text" class="form-control @error('location') is-invalid @enderror" id="location" name="location" value="{{old('location', $user->profile->location)}}">
                 @error('location')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -26,7 +26,16 @@
             </div>
             <div class="form-group">
                 <label for="instagram">Instagram</label>
-                <input type="text" class="form-control @error('instagram') is-invalid @enderror" id="instagram" name="instagram" value="{{old('instagram')}}">
+                <input type="text" class="form-control @error('instagram') is-invalid @enderror" id="instagram" name="instagram" value="{{old('instagram', $user->profile->instagram)}}">
+                @error('instagram')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="twitter">Twitter</label>
+                <input type="text" class="form-control @error('twitter') is-invalid @enderror" id="twitter" name="twitter" value="{{old('twitter', $user->profile->twitter)}}">
                 @error('instagram')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>

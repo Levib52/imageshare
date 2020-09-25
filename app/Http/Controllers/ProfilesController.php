@@ -32,6 +32,9 @@ class ProfilesController extends Controller
 
         $data = request()->validate([
             'instagram' => '',
+            'twitter' => '',
+            'bio' => '',
+            'location' => '',
             'profileImage' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2000',
         ]);
 
