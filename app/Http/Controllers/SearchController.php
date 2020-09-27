@@ -17,9 +17,7 @@ class SearchController extends Controller
 
         $query = $request->input('query');
         
-        $results = Post::where('postTitle', 'like', "%$query%")
-                        ->orWhere('postTags', 'like', "%$query%")
-                        ->orWhere('postDescription', 'like', "%$query%")
+        $results = Post::where('postTags', 'like', "%$query%")
                         ->orderBy('created_at', 'DESC')->paginate(20);
         return view('/search-results', compact('results', 'query'));
     }

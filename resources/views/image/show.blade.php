@@ -1,19 +1,20 @@
 @extends('layouts.app')
 @section('content')
-<div class="container my-lg-3 py-2 p-md-5" style="background-color: white;">
-    <?php $postImages = json_decode($post->postImage);?>
-    <?php $numImages = count($postImages);?>
+<div class="post-wrapper">
+    <div class="container post-container text-center pt-4">
+        <?php $postImages = json_decode($post->postImage);?>
+        <?php $numImages = count($postImages);?>
         @if($numImages === 1)
-            <a href="/storage/photos/{{$postImages[0]}}">
-                <img class="d-block w-100" src="/storage/photos/{{$postImages[0]}}" alt="" class="img-fluid">
+            <a href="/storage/photos/{{$postImages[0]}}" class="mx-auto">
+                <img class="img-fluid" src="/storage/photos/{{$postImages[0]}}" alt="">
             </a>
         @else
-            <div id="imageCarousel" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
+            <div id="imageCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
+                <div class="carousel-inner justify-content-center">
                     @foreach($postImages as $key => $postImage)
                     <div class="carousel-item {{$key == 0 ? 'active' : '' }}">
                         <a href="/storage/photos/{{$postImage}}">
-                            <img class="d-block w-100" src="/storage/photos/{{$postImage}}" alt="" class="img-fluid">
+                            <img class="img-fluid" src="/storage/photos/{{$postImage}}" alt="">
                         </a>
                     </div>
                     @endforeach
@@ -28,17 +29,55 @@
                 </a>
             </div>
         @endif
-    <h5><small><span class="text-muted">Posted by <a href="../user/{{$post->user->id}}">{{$post->user->username}}</a>
-        <div class="row">
-            <div class="col-lg-3">
-                <h5>Description:</h5>
+    </div>
+    @can('update', $post)
+        <div class="row"></div>
+            <div class="col text-center pt-4">
+                <form action="/image/{{$post->id}}" enctype="multipart/form-data" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-outline-dark" type="submit" value="Delete">Delete Post</button>
+                </form>
             </div>
-            <div class="col">
+        </div>
+    @endcan
+    <div class="row"></div>
+        <div class="col text-center pt-4">
+            <div class="container">
+                <a href="" class="nav-link py-3 mt-0" data-toggle="collapse" data-target="#postInfoDropdown" aria-controls="postInfoDropdown" aria-expanded="false">
+                    <i class="fas fa-info-circle fa-2x"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container collapse navbar-collapse" id="postInfoDropdown">
+        <div class="row">
+            <div class="col text-center pt-3">
+                <h3>{{$post->postTitle}}</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center pt-3">
                 <p>{{$post->postDescription}}</p>
             </div>
         </div>
-    <div class="row d-none">
-        <div class="col">{{$post->tags}}</div>
+        <div class="row">
+            <div class="col text-center pt-5">
+                <a href="../user/{{$post->user->id}}"><img src="{{ $post->user->profile->profileImage() }}" alt="" class="rounded-circle img-fluid" style="max-width: 55px;"></a>
+            </div>
+        </div>
+        <div class="row pb-5">
+            <div class="col text-center pt-1">
+                <div class="">
+                    <a href="../user/{{$post->user->id}}"><h5><strong>{{$post->user->username}}</strong></h5></a>
+                </div>
+            </div>
+        </div>
+        <div class="row d-none">
+            <div class="col">
+                {{$post->postTags}}
+            </div>
+        </div>
     </div>
 </div>
 @endsection

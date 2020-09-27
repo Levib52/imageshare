@@ -30,3 +30,74 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
 });
+/*
+let dropbox;
+
+dropbox = document.getElementById("dropbox");
+dropbox.addEventListener("dragenter", dragenter, false);
+dropbox.addEventListener("dragover", dragover, false);
+dropbox.addEventListener("drop", drop, false);
+
+function dragenter(e) {
+    e.stopPropagation();
+    e.preventDefault();
+}
+  
+function dragover(e) {
+    e.stopPropagation();
+    e.preventDefault();
+}
+
+function drop(e) {
+    e.stopPropagation();
+    e.preventDefault();
+  
+    const dt = e.dataTransfer;
+    const files = dt.files;
+  
+    handleFiles(files);
+}
+
+function handleFiles(files) {
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      const preview = document.getElementById('image-preview');
+
+      if (!file.type.startsWith('image/')){ continue }
+      
+      const img = document.createElement("img");
+      img.classList.add("col-3", "pt-2", "h-25", "img-fluid");
+      img.file = file;
+      preview.appendChild(img); // Assuming that "preview" is the div output where the content will be displayed.
+      
+      const reader = new FileReader();
+      reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
+      reader.readAsDataURL(file);
+    }
+}
+*/
+
+$(function() {
+    // Multiple images preview in browser
+    var imagesPreview = function(input, placeToInsertImagePreview) {
+
+        if (input.files) {
+            var filesAmount = input.files.length;
+
+            for (i = 0; i < filesAmount; i++) {
+                var reader = new FileReader();
+
+                reader.onload = function(event) {
+                    $($.parseHTML('<img class="col-3 pt-2 h-25 img-fluid">')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                }
+
+                reader.readAsDataURL(input.files[i]);
+            }
+        }
+
+    };
+
+    $('#postImage').on('change', function() {
+        imagesPreview(this, 'div.image-preview');
+    });
+});

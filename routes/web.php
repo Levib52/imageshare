@@ -25,8 +25,9 @@ Route::get('/image/{post}/edit', 'PostsController@edit')->name('image.edit');
 Route::patch('/image/{post}', 'PostsController@update')->name('image.update');
 Route::delete('/image/{post}', 'PostsController@destroy')->name('image.destroy');
 
-Route::get('/user/{user}', 'ProfilesController@index')->name('user.show');
+Route::get('/user/{user}', 'ProfilesController@index')->name('user.user');
 Route::get('/user/{user}/edit-profile', 'ProfilesController@edit')->name('profile.edit');
 Route::patch('/user/{user}', 'ProfilesController@update')->name('user.update');
+Route::delete('/user/{user}', 'ProfilesController@destroy')->name('user.destroy');
 
 Route::get('/search', 'SearchController@index')->name('search');

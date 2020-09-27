@@ -157,6 +157,7 @@ class PostsController extends Controller
         //authorize ensures users can only delete their own posts
         $this->authorize('update', $post);
         $post->delete();
+
         return redirect('/user/'. auth()->user()->id)->with('status', 'Post Deleted');
     }
 }

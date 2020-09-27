@@ -1,18 +1,22 @@
 @extends('layouts.app')
 @section('content')
-<div class="container p-4 border" style="background-color:white;">
+<div class="container p-4 border mt-3" style="background-color:white;">
     <h2 class="my-4" style="font-family: 'Roboto', sans-serif;">Upload your images</h2>
     <hr>
-    <form action="/image" enctype="multipart/form-data" method="post" class="pt-3">
+    <form action="/image" enctype="multipart/form-data" method="post" class="pt-5">
         @csrf
-        <div class="form-group">
-            <label for="postImage">Photos</label>
-            <input type="file" multiple class="form-control-file @error('postImage') is-invalid @enderror" id="postImage" name="postImage[]">
+        <div class="form-group text-lg-center text-md-left py-lg-5 mx-auto">
+            <label for="postImage" class="custom-file-upload">
+                <i class="fa fa-cloud-upload"></i> Choose Image(s)
+            </label>
+            <input type="file" multiple class=" mx-auto @error('postImage') is-invalid @enderror" id="postImage" name="postImage[]">
             @error('postImage')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
+            <div class="row image-preview pt-4" id="image-preview" name="image-preview">
+            </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">

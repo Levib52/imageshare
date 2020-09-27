@@ -43,7 +43,7 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="profileImage">Profile Picture</label>
+                <label for="profileImage" class="custom-file-upload">Profile Picture</label>
                 <input type="file" class="form-control-file @error('profileImage') is-invalid @enderror" id="profileImage" name="profileImage">
                 @error('profileImage')
                     <span class="invalid-feedback" role="alert">
@@ -55,5 +55,14 @@
                 <input class="btn btn-outline-dark" type="submit" value="Submit">
             </div>
         </form>
+        <div class="row">
+            <div class="col text-center pt-4">
+                <form action="/user/{{$user->id}}" enctype="multipart/form-data" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-outline-danger" type="submit" value="Delete">Delete Account</button>
+                </form>
+            </div>
+        </div>
     </div>
 @endsection

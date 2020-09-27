@@ -10,6 +10,7 @@
         @foreach($recentPosts as $post)
         <?php $thumbnails = json_decode($post->thumbnail);?>
             <a href="/image/{{$post->id}}" class="col-lg-3 col-md-6 py-3">
+                <!-- check number of images. if there is more than one image, display in a carosel -->
                 <?php $num = count($thumbnails);?>
                 @if($num === 1)
                     <img class="img-fluid" src="/storage/photos/{{$thumbnails[0]}}" alt="">
