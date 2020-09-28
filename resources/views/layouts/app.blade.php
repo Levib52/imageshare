@@ -9,6 +9,8 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <link rel="icon" href="/storage/logo/imageshare-icon.png">
+
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="https://kit.fontawesome.com/88fb975c1d.js" crossorigin="anonymous"></script>
@@ -90,11 +92,38 @@
                 </div>
             </div>
         </nav>
-
-        <main class="py-4">
+        @if(Request::is('/'))
+        <div class="index-banner d-none d-lg-block">
+            <div class="bg-image">
+                <div class="title">
+                    <h1><strong>Easily upload, share & view images.</strong></h1>
+                </div>
+            </div>
+        </div>
+        @endif
+        <main class="py-5">
             @include('flash-message')
             @yield('content')
         </main>
+        <footer class="pt-4">
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 col-xs-12 segment-one">
+                            <h3>Imageshare</h3>
+                            <p>A place where users can upload, view and share images.</p>
+                        </div>
+                        <div class="col-sm-6 col-xs-12 segment-two">
+                            <h4>Useful Links</h4>
+                            <ul>
+                                <li><a href="">About this website</a></li>
+                                <li><a href="">About the creator of this website</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 </body>
 </html>

@@ -57,10 +57,30 @@
         </form>
         <div class="row">
             <div class="col text-center pt-4">
+                <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#deleteAccountModal">Delete Account</button>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="deleteAccountModal" tabindex="-1" role="dialog" aria-labelledby="deleteAccountModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
                 <form action="/user/{{$user->id}}" enctype="multipart/form-data" method="post">
                     @csrf
                     @method('DELETE')
-                    <button class="btn btn-outline-danger" type="submit" value="Delete">Delete Account</button>
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteAccountModalLabel">Delete account?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>This cannot be undone!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-outline-danger" type="submit" value="Delete" >Delete Post</button>
+                    </div>
                 </form>
             </div>
         </div>

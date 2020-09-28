@@ -53,7 +53,7 @@ class ProfilesController extends Controller
             $profileImageArray ?? []
         ));
 
-        return redirect("/user/{$user->id}")->with('status', 'Profile Updated');
+        return redirect("/user/{$user->id}")->with('success', 'Profile Updated');
     }
 
     public function deletePic(User $user)

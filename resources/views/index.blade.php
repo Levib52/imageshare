@@ -2,7 +2,7 @@
 @section('content')
 <div class="container" style="background-color: white;">
     <div class="row">
-        <div class="col my-3">
+        <div class="col my-3 pt-2">
             <h3>Explore photos</h3>
         </div>
     </div>
@@ -27,6 +27,11 @@
                 @endif
             </a>
         @endforeach
+    </div>
+    <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+            {{$recentPosts->links()}}
+        </div>
     </div>
 </div>
 @endsection

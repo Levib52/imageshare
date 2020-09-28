@@ -146,7 +146,7 @@ class PostsController extends Controller
                 'thumbnail' => json_encode($thumbnailArray),
             ]));
         }
-        return redirect('image/' .  $post->id)->with('status', 'Post Updated');
+        return redirect('image/' .  $post->id)->with('success', 'Post Updated');
     }
 
     /*##
@@ -158,6 +158,6 @@ class PostsController extends Controller
         $this->authorize('update', $post);
         $post->delete();
 
-        return redirect('/user/'. auth()->user()->id)->with('status', 'Post Deleted');
+        return redirect('/user/'. auth()->user()->id)->with('success', 'Post Deleted');
     }
 }

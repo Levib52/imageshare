@@ -10914,6 +10914,27 @@ html body {
   height: 100%;
 }
 
+html body .index-banner .bg-image {
+  z-index: -1;
+  height: 50vh;
+  width: 100%;
+  background-image: url(/images/title-image.jpg?bb84329b8cc27581e531a037160f575d);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: block;
+  top: -48px;
+}
+
+html body .index-banner .bg-image .title {
+  color: white;
+  z-index: 1;
+  padding-top: 255px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0);
+  text-shadow: 2px 2px black;
+}
+
 html body main {
   min-height: 100%;
   height: auto !important;
@@ -10947,6 +10968,27 @@ html body main div.post-wrapper div.post-container .imageCarousel .carousel-inne
 
 html body main div.post-wrapper div.post-container .imageCarousel .carousel-inner .carousel-item.active {
   display: block;
+}
+
+html body .footer-top {
+  color: #f0f0f0;
+  background: #111;
+  padding: 30px 0;
+}
+
+html body .footer-top .segment-two ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+html body .footer-top .segment-two ul .li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+html body .footer-top .segment-two ul .li a {
+  color: #f0f0f0;
+  text-decoration: none;
 }
 
 html .carousel-control-prev-icon {

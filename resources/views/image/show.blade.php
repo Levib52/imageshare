@@ -33,18 +33,14 @@
     @can('update', $post)
         <div class="row"></div>
             <div class="col text-center pt-4">
-                <form action="/image/{{$post->id}}" enctype="multipart/form-data" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-outline-dark" type="submit" value="Delete">Delete Post</button>
-                </form>
+                <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#deletePostModal">Delete Post</button>
             </div>
         </div>
     @endcan
     <div class="row"></div>
         <div class="col text-center pt-4">
             <div class="container">
-                <a href="" class="nav-link py-3 mt-0" data-toggle="collapse" data-target="#postInfoDropdown" aria-controls="postInfoDropdown" aria-expanded="false">
+                <a href="" class="nav-link py-3 mt-0" data-toggle="collapse" data-target="#postInfoDropdown" aria-controls="postInfoDropdown" aria-expanded="false" style="color: rgb(34, 33, 33);">
                     <i class="fas fa-info-circle fa-2x"></i>
                 </a>
             </div>
@@ -73,10 +69,41 @@
                 </div>
             </div>
         </div>
+        <div class="row pb-5">
+            <div class="col text-center pt-1">
+                <div class="">
+                    <p>Posted {{$post->created_at->diffForHumans()}}</p>
+                </div>
+            </div>
+        </div>
         <div class="row d-none">
             <div class="col">
                 {{$post->postTags}}
             </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="deletePostModal" tabindex="-1" role="dialog" aria-labelledby="deletePostModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form action="/image/{{$post->id}}" enctype="multipart/form-data" method="post">
+                @csrf
+                @method('DELETE')
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deletePostModalLabel">Delete post?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>This cannot be undone!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-outline-danger" type="submit" value="Delete" >Delete Post</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
