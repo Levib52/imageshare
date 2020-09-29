@@ -40,15 +40,15 @@
     <div class="row"></div>
         <div class="col text-center pt-4">
             <div class="container">
-                <a href="" class="nav-link py-3 mt-0" data-toggle="collapse" data-target="#postInfoDropdown" aria-controls="postInfoDropdown" aria-expanded="false" style="color: rgb(34, 33, 33);">
-                    <i class="fas fa-info-circle fa-2x"></i>
+                <a href="#postCreatedAt" id="showPostDetails" class="nav-link py-2 mt-0" data-toggle="collapse" data-target="#postInfoDropdown" aria-controls="postInfoDropdown" aria-expanded="false" style="color: rgb(34, 33, 33);">
+                    <i class="fas fa-2x fa-angle-double-down"></i>
                 </a>
             </div>
         </div>
     </div>
     <div class="container collapse navbar-collapse" id="postInfoDropdown">
         <div class="row">
-            <div class="col text-center pt-3">
+            <div class="col text-center pt-2">
                 <h3>{{$post->postTitle}}</h3>
             </div>
         </div>
@@ -69,8 +69,8 @@
                 </div>
             </div>
         </div>
-        <div class="row pb-5">
-            <div class="col text-center pt-1">
+        <div class="row pb-3">
+            <div class="col text-center pt-1" id="postCreatedAt">
                 <div class="">
                     <p>Posted {{$post->created_at->diffForHumans()}}</p>
                 </div>

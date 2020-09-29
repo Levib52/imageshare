@@ -19,4 +19,14 @@ class PagesController extends Controller
         //return the view with the varibles
         return view('index', compact('recentPosts'));
     }
+
+    public function about()
+    {
+        return view('about');
+    }
+
+    public function aboutlevi()
+    {
+        return view('aboutlevi');
+    }
 }

@@ -101,3 +101,9 @@ $(function() {
         imagesPreview(this, 'div.image-preview');
     });
 });
+
+$('#postInfoDropdown').on('shown.bs.collapse', function () {
+    $('html, body').animate({
+       scrollTop: $("#postInfoDropdown").offset().top
+    }, 1000);
+});

@@ -79,7 +79,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button class="btn btn-outline-danger" type="submit" value="Delete" >Delete Post</button>
+                        <button class="btn btn-outline-danger" type="submit" value="Delete" >Delete account</button>
                     </div>
                 </form>
             </div>

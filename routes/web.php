@@ -30,4 +30,7 @@ Route::get('/user/{user}/edit-profile', 'ProfilesController@edit')->name('profil
 Route::patch('/user/{user}', 'ProfilesController@update')->name('user.update');
 Route::delete('/user/{user}', 'ProfilesController@destroy')->name('user.destroy');
 
+Route::get('/about', 'PagesController@about');
+Route::get('/aboutlevi', 'PagesController@aboutlevi');
+
 Route::get('/search', 'SearchController@index')->name('search');
